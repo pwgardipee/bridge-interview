@@ -23,11 +23,34 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}
       >
-        {children}
+        <div className="min-h-full ">
+          <div className="border-b border-gray-200 bg-white">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ">
+              <div className="flex h-16 justify-between">
+                <div className="flex">
+                  <div className="flex shrink-0 items-center">
+                    <img
+                      src="https://logos-world.net/wp-content/uploads/2020/07/Pokemon-Logo.jpg"
+                      className="h-12 w-auto"
+                    />
+                  </div>
+                </div>
+                <div className="ml-6 flex items-center">
+                  <div className="text-monospace text-gray-400 text-sm">
+                    Peyton Gardipee | Jan 2025
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <main>
+            <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">{children}</div>
+          </main>
+        </div>
       </body>
     </html>
   );
