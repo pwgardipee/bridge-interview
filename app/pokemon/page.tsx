@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getAllPokemon } from "./../../lib/pokemonAPI";
 
+// Define the number of Pokemon to fetch per page
 const PAGE_SIZE = 20;
 
 export default function page() {
@@ -10,7 +11,7 @@ export default function page() {
   const [numPages, setNumPages] = useState(0);
 
   const fetchPageOfPokemon = async (page: number) => {
-    const data = await getAllPokemon(page);
+    const data = await getAllPokemon(page, PAGE_SIZE);
     const count = data.count;
     const numPages = Math.round(count / PAGE_SIZE);
     setNumPages(numPages);
