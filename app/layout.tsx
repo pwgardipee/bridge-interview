@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -33,10 +34,12 @@ export default function RootLayout({
               <div className="flex h-16 justify-between">
                 <div className="flex">
                   <div className="flex shrink-0 items-center">
-                    <img
-                      src="https://logos-world.net/wp-content/uploads/2020/07/Pokemon-Logo.jpg"
-                      className="h-12 w-auto"
-                    />
+                    <Link href="/pokemon">
+                      <img
+                        src="https://logos-world.net/wp-content/uploads/2020/07/Pokemon-Logo.jpg"
+                        className="h-12 w-auto"
+                      />
+                    </Link>
                   </div>
                 </div>
                 <div className="ml-6 flex items-center">

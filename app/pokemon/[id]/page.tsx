@@ -35,7 +35,7 @@ export default async function Page({
             {/* Image selector */}
             <div className="mx-auto mt-6 hidden w-full max-w-2xl sm:block lg:max-w-none">
               <TabList className="grid grid-cols-4 gap-6">
-                {images.map((image: any) => (
+                {images.map((image: string) => (
                   <Tab
                     key={image}
                     className="group relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-indigo-500/50 focus:ring-offset-4"
@@ -53,7 +53,7 @@ export default async function Page({
             </div>
 
             <TabPanels>
-              {images.map((image: any) => (
+              {images.map((image: string) => (
                 <TabPanel key={image}>
                   <img alt="Main Image" src={image} className="aspect-square w-full object-cover sm:rounded-lg" />
                 </TabPanel>
@@ -73,7 +73,7 @@ export default async function Page({
             </div>
             <div className="mt-6">
               <div className="space-y-6 text-base text-gray-700" >
-                <b>Moves:</b> {data.moves.map((move: any) => move.move.name).join(", ")}
+                <b>Moves:</b> {data.moves.map((move: {move: {name: string}}) => move.move.name).join(", ")}
               </div>
             </div>
 
@@ -104,7 +104,7 @@ export default async function Page({
                   </h3>
                   <DisclosurePanel className="pb-6">
                     <ul role="list" className="list-disc space-y-1 pl-5 text-sm/6 text-gray-700 marker:text-gray-300">
-                      {data.stats.map((stat: any) => (
+                      {data.stats.map((stat: { stat: { name: string }, base_stat: number }) => (
                         <li key={stat.stat.name} className="pl-2">
                           <b>{stat.stat.name}</b>: {stat.base_stat}
                         </li>

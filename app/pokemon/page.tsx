@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getAllPokemon } from "./../../lib/pokemonAPI";
 import Pagination from "@/components/pagination";
@@ -7,10 +6,12 @@ import Table from "@/components/table";
 // Define the number of Pokemon to fetch per page
 const PAGE_SIZE = 20;
 
-export default function page() {
+export default function Page() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [data, setData] = useState<any>();
   const [numPages, setNumPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
+  
   const fetchPageOfPokemon = async (page: number) => {
     const data = await getAllPokemon(page, PAGE_SIZE);
     const count = data.count;
