@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getAllPokemon } from "./../../lib/pokemonAPI";
 import Pagination from "@/components/pagination";
+import Table from "@/components/table";
 // Define the number of Pokemon to fetch per page
 const PAGE_SIZE = 20;
 
@@ -29,16 +30,11 @@ export default function page() {
 
   return (
     <div>
+      <h1 className="text-2xl font-bold mb-4">All Pokemon</h1>
       {data && data.results && (
-        <ul>
-          {data.results.map((result: any) => {
-            return (
-              <li key={result.name}>
-                <Link href={`/pokemon/${result.name}`}>{result.name}</Link>
-              </li>
-            );
-          })}
-        </ul>
+        <div className="max-h-[600px] overflow-y-auto">
+          <Table data={data.results} />
+        </div>
       )}
       <Pagination numberOfPages={numPages} currentPage={currentPage} onPageChange={setPageAndFetchPageOfPokemon} />
     </div>
