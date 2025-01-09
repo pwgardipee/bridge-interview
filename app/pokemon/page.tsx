@@ -2,14 +2,14 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getAllPokemon } from "./../../lib/pokemonAPI";
-
+import Pagination from "@/components/pagination";
 // Define the number of Pokemon to fetch per page
 const PAGE_SIZE = 20;
 
 export default function page() {
   const [data, setData] = useState<any>();
   const [numPages, setNumPages] = useState(0);
-
+  const [currentPage, setCurrentPage] = useState(0);
   const fetchPageOfPokemon = async (page: number) => {
     const data = await getAllPokemon(page, PAGE_SIZE);
     const count = data.count;
@@ -19,6 +19,7 @@ export default function page() {
   };
 
   const setPageAndFetchPageOfPokemon = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
     fetchPageOfPokemon(pageNumber);
   };
 
@@ -39,20 +40,7 @@ export default function page() {
           })}
         </ul>
       )}
-      <div className="flex gap-4">
-        {Array(numPages)
-          .fill(0)
-          .map((value, index) => {
-            return (
-              <button
-                key={index}
-                onClick={() => setPageAndFetchPageOfPokemon(index)}
-              >
-                {index + 1}
-              </button>
-            );
-          })}
-      </div>
+      <Pagination numberOfPages={numPages} currentPage={currentPage} onPageChange={setPageAndFetchPageOfPokemon} />
     </div>
   );
 }
